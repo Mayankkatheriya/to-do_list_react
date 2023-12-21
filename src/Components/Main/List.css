@@ -1,0 +1,65 @@
+.list {
+  border-radius: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  box-shadow: 2px 2px 5px 0 #0000009f, inset 1px 1px 5px 0 #00000063;
+  margin-bottom: 1rem;
+}
+.list .subject-name h3 {
+  width: 100px;
+  color: rgb(187, 105, 5);
+}
+
+.list .total-hours h4 {
+  color: rgb(241, 138, 11);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 85px;
+}
+
+.list .total-hours h4 span {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: rgb(187, 105, 5);
+}
+
+.list-btn-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.list .list-btn-container button {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  outline-color: tomato;
+  border: 1px solid rgb(187, 105, 5);
+  color: rgb(187, 105, 5);
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #e2cb98 0 -3px 0 inset;
+  font-weight: 700;
+}
+.list .list-btn-container button:focus {
+  box-shadow: #ebdc99 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #e7d999 0 -3px 0 inset;
+}
+.list .list-btn-container button:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #f1dbaa 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.list .list-btn-container button:active {
+  box-shadow: #d6d6e7 0 3px 7px inset;
+  transform: translateY(2px);
+}
