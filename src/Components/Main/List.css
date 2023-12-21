@@ -3,6 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   padding: 1rem 1.5rem;
   box-shadow: 2px 2px 5px 0 #0000009f, inset 1px 1px 5px 0 #00000063;
   margin-bottom: 1rem;
@@ -10,6 +11,8 @@
 .list .subject-name h3 {
   width: 100px;
   color: rgb(187, 105, 5);
+  word-wrap: break-word;
+  text-align: center;
 }
 
 .list .total-hours h4 {
@@ -18,7 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 85px;
+  width: 60px;
 }
 
 .list .total-hours h4 span {
@@ -66,4 +69,11 @@
 
 .list .list-btn-container button:nth-child(3) {
   font-size: 1rem;
+}
+
+@media screen and (max-width: 400px) {
+  .list {
+    justify-content: center;
+    gap: 1rem;
+  }
 }
