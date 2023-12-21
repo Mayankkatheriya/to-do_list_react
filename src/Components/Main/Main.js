@@ -28,33 +28,37 @@ const Main = () => {
     } else if (hours > 99) {
       alert("Hours should not exceed 99");
     } else {
-      setListData([
-        ...listData,
-        {
-          subject: subjectName,
-          hours: Number(hours),
-        },
-      ]);
+      setListData(()=>{
+        let data=getListData();
+        data.push({ subject: subjectName, hours: parseInt(hours) });
+        localStorage.setItem("data",JSON.stringify(data));
+        return data;
+      });
       setSubjectname("");
       sethours("");
     }
-    localStorage.setItem("data", JSON.stringify(listData));
   };
 
   //todo common increment and decrement function and sene as a prop to lifting up state to change hour value when '+' , '-' button clicked
   const UpdateHandler = (idx, type) => {
     if (type === "incr") {
-      if (listData[idx].hours >= 99) return;
+      if (listData[idx].hours===99) return;
       let newHour = [...listData];
-      newHour[idx].hours += 0.5;
+      newHour[idx].hours += 1;
       setListData(newHour);
     } else {
-      if (listData[idx].hours === 1) return;
-      let newHour = [...listData];
-      newHour[idx].hours -= 0.5;
-      setListData(newHour);
+        if (listData[idx].hours === 1) return;
+        let newHour = [...listData];
+        newHour[idx].hours -= 1;
+        setListData(newHour);
     }
     localStorage.setItem("data", JSON.stringify(listData));
+  };
+
+  //Todo ClearData func to clear all listdata from local storage
+  const clearData = () => {
+    localStorage.removeItem("data");
+    setListData([]);
   };
 
   return (
@@ -71,7 +75,7 @@ const Main = () => {
           type="number"
           placeholder="Hours"
           min={1}
-          step={0.5}
+          step={1}
           value={hours}
           onChange={(e) => onChangeHandler(e, sethours)}
           required
@@ -83,8 +87,10 @@ const Main = () => {
           <List key={index} obj={item} updateFn={UpdateHandler} id={index} />
         ))}
       </div>
+      <div className="clear-btn">
+        <button style={{display: (listData.length==0) ? "none" : "flex"}} onClick={clearData}>Clear All</button>
+      </div>
     </main>
   );
 };
-
 export default Main;
