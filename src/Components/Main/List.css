@@ -63,3 +63,7 @@
   box-shadow: #d6d6e7 0 3px 7px inset;
   transform: translateY(2px);
 }
+
+.list .list-btn-container button:nth-child(3) {
+  font-size: 1rem;
+}

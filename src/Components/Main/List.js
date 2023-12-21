@@ -8,6 +8,9 @@ const List = (props) => {
     if (e.target.innerText == "-") {
       type = "decr";
     }
+    else if(e.target.innerText == "🗑️"){
+      type = "delete"
+    }
     props.updateFn(props.id, type);
   };
 
@@ -22,8 +25,9 @@ const List = (props) => {
         </h4>
       </div>
       <div className="list-btn-container">
-        <button onClick={updateHour}>+</button>
-        <button onClick={updateHour}>-</button>
+        <button title="Add hour" onClick={updateHour}>+</button>
+        <button title="Subtract hour" onClick={updateHour}>-</button>
+        <button title="Delete" onClick={updateHour} > 🗑️ </button>
       </div>
     </div>
   );

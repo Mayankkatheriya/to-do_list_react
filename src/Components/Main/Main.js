@@ -46,11 +46,15 @@ const Main = () => {
       let newHour = [...listData];
       newHour[idx].hours += 1;
       setListData(newHour);
-    } else {
+    } else if((type === "decr")){
         if (listData[idx].hours === 1) return;
         let newHour = [...listData];
         newHour[idx].hours -= 1;
         setListData(newHour);
+    }
+    else {
+      listData.splice(idx, 1);
+      setListData([...listData]);
     }
     localStorage.setItem("data", JSON.stringify(listData));
   };
@@ -80,7 +84,7 @@ const Main = () => {
           onChange={(e) => onChangeHandler(e, sethours)}
           required
         />
-        <button onClick={addList}>Add</button>
+        <button title="Add Plan" onClick={addList}>Add</button>
       </div>
       <div className="list-container">
         {listData.map((item, index) => (
@@ -89,7 +93,7 @@ const Main = () => {
       </div>
       <h2 style={{display: (listData.length==0) ? "block" : "none"}}>No plans to show</h2>
       <div className="clear-btn">
-        <button style={{display: (listData.length==0) ? "none" : "flex"}} onClick={clearData}>Clear All</button>
+        <button title = "Clear" style={{display: (listData.length==0) ? "none" : "flex"}} onClick={clearData}>Clear All</button>
       </div>
     </main>
   );
