@@ -6,13 +6,11 @@ import List from "./List";
 const Main = () => {
   const getListData = () => {
     return JSON.parse(localStorage.getItem("data")) || [];
-  }
+  };
   //todo  taking state variables
   let [subjectName, setSubjectname] = useState("");
   let [hours, sethours] = useState("");
   let [listData, setListData] = useState(getListData());
-
-  
 
   //todo common change function to handle changes in inputs
   const onChangeHandler = (e, func) => {
@@ -28,10 +26,10 @@ const Main = () => {
     } else if (hours > 99) {
       alert("Hours should not exceed 99");
     } else {
-      setListData(()=>{
-        let data=getListData();
+      setListData(() => {
+        let data = getListData();
         data.push({ subject: subjectName, hours: parseInt(hours) });
-        localStorage.setItem("data",JSON.stringify(data));
+        localStorage.setItem("data", JSON.stringify(data));
         return data;
       });
       setSubjectname("");
@@ -39,20 +37,19 @@ const Main = () => {
     }
   };
 
-  //todo common increment and decrement function and sene as a prop to lifting up state to change hour value when '+' , '-' button clicked
+  //todo common increment and decrement function and sene as a prop to lifting up state to change hour value when '+' , '-' o delete button clicked
   const UpdateHandler = (idx, type) => {
     if (type === "incr") {
-      if (listData[idx].hours===99) return;
+      if (listData[idx].hours === 99) return;
       let newHour = [...listData];
       newHour[idx].hours += 1;
       setListData(newHour);
-    } else if((type === "decr")){
-        if (listData[idx].hours === 1) return;
-        let newHour = [...listData];
-        newHour[idx].hours -= 1;
-        setListData(newHour);
-    }
-    else {
+    } else if (type === "decr") {
+      if (listData[idx].hours === 1) return;
+      let newHour = [...listData];
+      newHour[idx].hours -= 1;
+      setListData(newHour);
+    } else {
       listData.splice(idx, 1);
       setListData([...listData]);
     }
@@ -84,16 +81,26 @@ const Main = () => {
           onChange={(e) => onChangeHandler(e, sethours)}
           required
         />
-        <button title="Add Plan" onClick={addList}>Add</button>
+        <button title="Add Plan" onClick={addList}>
+          Add
+        </button>
       </div>
       <div className="list-container">
         {listData.map((item, index) => (
           <List key={index} obj={item} updateFn={UpdateHandler} id={index} />
         ))}
       </div>
-      <h2 style={{display: (listData.length==0) ? "block" : "none"}}>No plans to show</h2>
+      <h2 style={{ display: listData.length == 0 ? "block" : "none" }}>
+        No plans to show
+      </h2>
       <div className="clear-btn">
-        <button title = "Clear" style={{display: (listData.length==0) ? "none" : "flex"}} onClick={clearData}>Clear All</button>
+        <button
+          title="Clear"
+          style={{ display: listData.length == 0 ? "none" : "flex" }}
+          onClick={clearData}
+        >
+          Clear All
+        </button>
       </div>
     </main>
   );
