@@ -115,3 +115,9 @@ main .list-container {
   background-color: transparent;
   border: 2px solid rgb(187, 105, 5);
 }
+main h2 {
+  font-size: 2rem;
+  line-height: 1.5;
+  opacity: .8;
+  text-transform: capitalize;
+}

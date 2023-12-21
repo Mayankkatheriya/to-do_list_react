@@ -87,6 +87,7 @@ const Main = () => {
           <List key={index} obj={item} updateFn={UpdateHandler} id={index} />
         ))}
       </div>
+      <h2 style={{display: (listData.length==0) ? "block" : "none"}}>No plans to show</h2>
       <div className="clear-btn">
         <button style={{display: (listData.length==0) ? "none" : "flex"}} onClick={clearData}>Clear All</button>
       </div>
